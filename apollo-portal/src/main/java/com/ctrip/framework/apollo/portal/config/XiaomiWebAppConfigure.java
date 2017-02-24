@@ -15,7 +15,7 @@ public class XiaomiWebAppConfigure extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptorV2()).addPathPatterns("/**");
+        registry.addInterceptor(new LoginInterceptorV2()).addPathPatterns("/**").excludePathPatterns("/sts");
         //registry.addInterceptor(new RedirectInterceptor()).addPathPatterns("/**");
         //registry.addInterceptor(new RedirectInterceptorV2()).addPathPatterns("/user");
         super.addInterceptors(registry);
