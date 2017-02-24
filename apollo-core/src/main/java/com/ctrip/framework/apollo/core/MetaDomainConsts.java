@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.core;
 
 import com.ctrip.framework.apollo.core.enums.Env;
 import com.ctrip.framework.apollo.core.utils.ResourceUtils;
+import com.xiaomi.miliao.zookeeper.EnvironmentType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,7 @@ import java.util.Properties;
 public class MetaDomainConsts {
 
   private static Map<Env, Object> domains = new HashMap<>();
+  private static Map<EnvironmentType, Object> domainsV2 = new HashMap<>();
 
   public static final String DEFAULT_META_URL = "http://config.local";
 
@@ -39,5 +41,9 @@ public class MetaDomainConsts {
 
   public static String getDomain(Env env) {
     return String.valueOf(domains.get(env));
+  }
+
+  public static String getDomain(EnvironmentType environmentType) {
+    return null;
   }
 }

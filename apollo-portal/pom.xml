@@ -12,6 +12,11 @@
 	<name>Apollo Portal</name>
 	<properties>
 		<github.path>${project.artifactId}</github.path>
+		<passport_login_url>http://account.preview.n.xiaomi.net/pass/servicelogin</passport_login_url>
+		<service_url>http://max.ad.xiaomi.srv/slfService/main.html</service_url>
+		<local_service_url>http://max.ad.xiaomi.srv/slfService/main.html/passport</local_service_url>
+		<service_name>max_dsp</service_name>
+		<pa_zookeeper>staging</pa_zookeeper>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -22,6 +27,21 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.xiaomi</groupId>
+			<artifactId>passportsdk</artifactId>
+			<version>3.3.7</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-aop</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 	</dependencies>
 	<build>

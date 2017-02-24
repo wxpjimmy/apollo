@@ -5,6 +5,18 @@
 		value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}apollo-portal.log}" />
 	<include resource="org/springframework/boot/logging/logback/file-appender.xml" />
 	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<appender name="accout" class="ch.qos.logback.core.ConsoleAppender">
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+
+	<logger name="com.xiaomi.passport" level="debug" additivity="false">
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
 	<root level="INFO">
 		<appender-ref ref="FILE" />
 		<appender-ref ref="CONSOLE" />

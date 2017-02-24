@@ -3,6 +3,7 @@ package com.ctrip.framework.apollo.portal;
 import com.ctrip.framework.apollo.common.ApolloCommonConfig;
 import com.ctrip.framework.apollo.openapi.PortalOpenApiConfig;
 
+import com.xiaomi.passport.sdk.utils.STSHellper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.system.ApplicationPidFileWriter;
 import org.springframework.boot.actuate.system.EmbeddedServerPortFileWriter;
@@ -17,13 +18,14 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableAutoConfiguration
 @EnableTransactionManagement
-@ComponentScan(basePackageClasses = {ApolloCommonConfig.class,
-    PortalApplication.class, PortalOpenApiConfig.class})
+@ComponentScan(basePackages = {"com.ctrip.framework", "com.xiaomi.passport.sdk.interceptors"})
 public class PortalApplication {
 
   public static void main(String[] args) throws Exception {
+    System.out.println("Application started!");
     ConfigurableApplicationContext context = SpringApplication.run(PortalApplication.class, args);
     context.addApplicationListener(new ApplicationPidFileWriter());
     context.addApplicationListener(new EmbeddedServerPortFileWriter());
+    //System.out.println(context.getBean("SSORequiredInterceptor"));
   }
 }

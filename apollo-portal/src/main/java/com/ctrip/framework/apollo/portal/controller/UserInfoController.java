@@ -1,10 +1,13 @@
 package com.ctrip.framework.apollo.portal.controller;
 
+import com.ctrip.framework.apollo.portal.annotation.SSOWebRequired;
 import com.ctrip.framework.apollo.portal.spi.LogoutHandler;
 import com.ctrip.framework.apollo.portal.spi.UserInfoHolder;
 import com.ctrip.framework.apollo.portal.entity.bo.UserInfo;
 import com.ctrip.framework.apollo.portal.spi.UserService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
+@SSOWebRequired
 public class UserInfoController {
-
+  private static Logger logger = LoggerFactory.getLogger(UserInfoController.class);
   @Autowired
   private UserInfoHolder userInfoHolder;
   @Autowired
@@ -31,6 +35,7 @@ public class UserInfoController {
 
   @RequestMapping(value = "/user", method = RequestMethod.GET)
   public UserInfo getCurrentUserName() {
+    logger.info("[##TEST##] get User Name");
     return userInfoHolder.getUser();
   }
 
