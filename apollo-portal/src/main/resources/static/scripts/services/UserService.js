@@ -7,6 +7,10 @@ appService.service('UserService', ['$resource', '$q', function ($resource, $q) {
         find_users: {
             method: 'GET',
             url: '/users'
+        },
+        login_status: {
+            method: 'GET',
+            url: '/login/status'
         }
     });
     return {
@@ -35,6 +39,22 @@ appService.service('UserService', ['$resource', '$q', function ($resource, $q) {
                                      function (result) {
                                          d.reject(result);
                                      });
+            return d.promise;
+        },
+
+        login_status: function () {
+            var finished = false;
+            var d = $q.defer();
+            user_resource.login_status({},
+                                        function (result) {
+                                            finished = true;
+                                            d.resolve(result);
+                                        },
+                                        function (result) {
+                                            finished = false;
+                                            d.reject(result);
+                                        }
+            );
             return d.promise;
         }
     }

@@ -1,4 +1,4 @@
-index_module.controller('IndexController', ['$scope', '$window', 'toastr', 'AppUtil', 'AppService',
+ index_module.controller('IndexController', ['$scope', '$window', 'toastr', 'AppUtil', 'AppService',
                                             'UserService', 'FavoriteService',
                                             IndexController]);
 

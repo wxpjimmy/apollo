@@ -1,5 +1,6 @@
 package com.ctrip.framework.apollo.portal.spi.configuration;
 
+import com.ctrip.framework.apollo.portal.spi.xiaomi.XiaomiUserInfoHolder;
 import com.google.common.collect.Maps;
 
 import com.ctrip.framework.apollo.portal.component.config.PortalConfig;
@@ -184,10 +185,16 @@ public class AuthConfiguration {
       return new DefaultSsoHeartbeatHandler();
     }
 
+//    @Bean
+//    @ConditionalOnMissingBean(UserInfoHolder.class)
+//    public DefaultUserInfoHolder notCtripUserInfoHolder() {
+//      return new DefaultUserInfoHolder();
+//    }
+
     @Bean
     @ConditionalOnMissingBean(UserInfoHolder.class)
-    public DefaultUserInfoHolder notCtripUserInfoHolder() {
-      return new DefaultUserInfoHolder();
+    public XiaomiUserInfoHolder notCtripUserInfoHolder() {
+      return new XiaomiUserInfoHolder();
     }
 
     @Bean

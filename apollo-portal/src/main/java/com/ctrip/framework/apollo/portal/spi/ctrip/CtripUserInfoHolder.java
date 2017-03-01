@@ -3,6 +3,8 @@ package com.ctrip.framework.apollo.portal.spi.ctrip;
 import com.ctrip.framework.apollo.portal.spi.UserInfoHolder;
 import com.ctrip.framework.apollo.portal.entity.bo.UserInfo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 
 /**

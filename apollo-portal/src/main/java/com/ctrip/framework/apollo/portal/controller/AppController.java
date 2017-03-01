@@ -20,6 +20,8 @@ import com.ctrip.framework.apollo.portal.service.RolePermissionService;
 import com.ctrip.framework.apollo.portal.spi.UserInfoHolder;
 import com.ctrip.framework.apollo.portal.util.RoleUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.domain.Pageable;
@@ -44,6 +46,7 @@ import java.util.Set;
 @RestController
 @RequestMapping("/apps")
 public class AppController {
+  private static Logger logger = LoggerFactory.getLogger(AppController.class);
 
   @Autowired
   private UserInfoHolder userInfoHolder;
@@ -59,8 +62,11 @@ public class AppController {
 
   @RequestMapping(value = "", method = RequestMethod.GET)
   public List<App> findApps(@RequestParam(value = "appIds", required = false) String appIds) {
+    logger.info("Get all appids!");
     if (StringUtils.isEmpty(appIds)) {
-      return appService.findAll();
+      List<App> all =  appService.findAll();
+      logger.info("App Result: {}", all);
+      return all;
     } else {
       return appService.findByAppIds(Sets.newHashSet(appIds.split(",")));
     }

@@ -6,6 +6,7 @@ import com.ctrip.framework.apollo.portal.spi.UserInfoHolder;
 import com.ctrip.framework.apollo.portal.entity.bo.UserInfo;
 import com.ctrip.framework.apollo.portal.spi.UserService;
 
+import com.xiaomi.passport.sdk.utils.STSHellper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class UserInfoController {
   private UserService userService;
 
   @RequestMapping(value = "/user", method = RequestMethod.GET)
-  public UserInfo getCurrentUserName() {
+  public UserInfo getCurrentUserName(HttpServletRequest request, HttpServletResponse response) {
     logger.info("[##TEST##] get User Name");
     return userInfoHolder.getUser();
   }

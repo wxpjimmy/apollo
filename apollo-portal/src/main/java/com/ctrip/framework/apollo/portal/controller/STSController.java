@@ -32,7 +32,7 @@ public class STSController extends STSControllerBase {
     }
 
     @RequestMapping(value = "/sts", method = RequestMethod.GET)
-    public String sts(@RequestParam(value = "auth", required = false) String authToken,
+    public void sts(@RequestParam(value = "auth", required = false) String authToken,
                       @RequestParam(value = "followup", required = false) String followup,
                       @RequestParam(value = "clientSign", required = false) String clientSign,
                       @RequestParam(value = "sign", required = false) String sign,
@@ -41,15 +41,21 @@ public class STSController extends STSControllerBase {
 
         try {
             logger.info("Processing STS......");
-            String result = stsRose(request, response, authToken, followup, clientSign, sign, tokenNeedEcrypt);
-            logger.info("Sts result: {}", result);
-            if(result.startsWith("r:")) {
-                response.sendRedirect();
+            StsResult result = super.sts(request, response, authToken, followup, clientSign, sign, tokenNeedEcrypt).get();
+            logger.info("Sts result: [{}---{}---{}]", result.sdkErrorCode, result.httpStatus, result.followup);
+            if (result.sdkErrorCode != SDKErrorCode.Success) {
+                response.setStatus(result.httpStatus);
+            } else {
+                if (result.followup != null) {
+                    response.setStatus(302);
+                    response.setHeader("Location", result.followup);
+                } else {
+                    response.setStatus(200);
+                }
             }
-            return result;
         } catch (Throwable e) {
             logger.error(e.getMessage(), e);
-            return ResultHelper.genStatusResult(HttpStatus.SC_BAD_REQUEST);
+            response.setStatus(400);
         }
     }
 

@@ -11,6 +11,20 @@ directive_module.directive('apollonav',
                                        scope.sourceApps = [];
                                        scope.copyedApps = [];
 
+                                       UserService.login_status().then(function (result) {
+                                           if (!result) {
+                                               $window.location.href = '/login.html';
+                                           }
+                                       }, function (result) {
+                                           $window.location.href = '/login.html';
+                                       });
+
+                                       UserService.load_user().then(function (result) {
+                                           scope.userName = result.userId;
+                                       }, function (result) {
+
+                                       });
+
                                        AppService.find_apps().then(function (result) {
                                            result.forEach(function (app) {
                                                app.selected = false;
@@ -108,11 +122,6 @@ directive_module.directive('apollonav',
 
                                        }
 
-                                       UserService.load_user().then(function (result) {
-                                           scope.userName = result.userId;
-                                       }, function (result) {
-
-                                       });
                                    }
                                }
 
