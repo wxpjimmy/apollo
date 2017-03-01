@@ -29,10 +29,10 @@ public class XiaomiUserInfoHolder implements UserInfoHolder {
                 logger.info("Login failed!");
                 throw new RuntimeException("Login failed!");
             }
-            long userId = (long) authentication.getPrincipal();
-            logger.info("[##XiaomiUserInfoHolder##] User Id:{}", userId);
+            String userName = (String) authentication.getPrincipal();
+            logger.info("[##XiaomiUserInfoHolder##] User Id:{}", userName);
             UserInfo userInfo = new UserInfo();
-            userInfo.setUserId(String.valueOf(userId));
+            userInfo.setUserId(userName);
 
             return userInfo;
         }
