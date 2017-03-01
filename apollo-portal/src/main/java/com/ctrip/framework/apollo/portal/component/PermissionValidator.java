@@ -6,12 +6,14 @@ import com.ctrip.framework.apollo.portal.service.RolePermissionService;
 import com.ctrip.framework.apollo.portal.spi.UserInfoHolder;
 import com.ctrip.framework.apollo.portal.util.RoleUtils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component("permissionValidator")
 public class PermissionValidator {
-
+  private static Logger logger = LoggerFactory.getLogger(PermissionValidator.class);
   @Autowired
   private UserInfoHolder userInfoHolder;
   @Autowired
