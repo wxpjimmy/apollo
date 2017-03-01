@@ -23,6 +23,16 @@ public final class EnvUtils {
         return Env.DEV;
       case "LOCAL":
         return Env.LOCAL;
+      case "STAGING":
+        return Env.STAGING;
+      case "LUGU":
+        return Env.LUGU;
+      case "C3":
+        return Env.C3;
+      case "C4":
+        return Env.C4;
+      case "AWS_SGP":
+        return Env.AWS_SGP;
       default:
         return null;
     }

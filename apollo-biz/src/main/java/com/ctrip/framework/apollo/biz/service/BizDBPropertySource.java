@@ -1,5 +1,6 @@
 package com.ctrip.framework.apollo.biz.service;
 
+import com.ctrip.framework.apollo.core.utils.CommonSettings;
 import com.google.common.base.Strings;
 import com.google.common.collect.Maps;
 
@@ -37,7 +38,7 @@ public class BizDBPropertySource extends RefreshablePropertySource {
   }
 
   String getCurrentDataCenter() {
-    return Foundation.server().getDataCenter();
+    return CommonSettings.getDataCenter();
   }
 
   @Override

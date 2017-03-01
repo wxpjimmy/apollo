@@ -20,6 +20,8 @@ import com.ctrip.framework.apollo.core.ConfigConsts;
 import com.ctrip.framework.apollo.core.dto.ApolloConfig;
 import com.ctrip.framework.apollo.tracer.Tracer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("/configs")
 public class ConfigController {
+  private static final Logger logger = LoggerFactory.getLogger(ConfigController.class);
   private static final Splitter X_FORWARDED_FOR_SPLITTER = Splitter.on(",").omitEmptyStrings()
       .trimResults();
   @Autowired
@@ -82,6 +85,7 @@ public class ConfigController {
     List<Release> releases = Lists.newLinkedList();
 
     String appClusterNameLoaded = clusterName;
+    logger.info("AppId: {}, ClusterName: {}, namespace: {}, datecenter: {}", appId, clusterName, namespace, dataCenter);
     if (!ConfigConsts.NO_APPID_PLACEHOLDER.equalsIgnoreCase(appId)) {
       Release currentAppRelease = loadConfig(appId, clientIp, appId, clusterName, namespace,
           dataCenter);

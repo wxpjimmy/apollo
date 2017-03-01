@@ -1,5 +1,6 @@
 package com.ctrip.framework.apollo.demo.api;
 
+import com.ctrip.framework.apollo.core.utils.CommonSettings;
 import com.google.common.base.Charsets;
 
 import com.ctrip.framework.apollo.Config;
@@ -80,9 +81,9 @@ public class ApolloConfigDemo {
   }
 
   private void printEnvInfo() {
-    String message = String.format("AppId: %s, Env: %s, DC: %s, IP: %s", Foundation.app()
-        .getAppId(), Foundation.server().getEnvType(), Foundation.server().getDataCenter(),
-        Foundation.net().getHostAddress());
+    String message = String.format("AppId: %s, Env: %s, DC: %s, IP: %s", CommonSettings
+        .getAppId(), CommonSettings.getEnvType(), CommonSettings.getDataCenter(),
+        CommonSettings.getHostAddress());
     System.out.println(message);
   }
 

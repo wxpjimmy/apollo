@@ -17,7 +17,7 @@ public class RedirectInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         logger.info("Test Redirect[1]!");
-        response.sendRedirect(request.getContextPath() + "/redirect");
+        //response.sendRedirect(request.getContextPath() + "/redirect");
         return true;
     }
 

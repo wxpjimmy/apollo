@@ -1,5 +1,6 @@
 package com.ctrip.framework.apollo.util;
 
+import com.ctrip.framework.apollo.core.utils.CommonSettings;
 import com.google.common.base.Strings;
 
 import com.ctrip.framework.apollo.core.ConfigConsts;
@@ -52,7 +53,7 @@ public class ConfigUtil {
    * @return the app id or ConfigConsts.NO_APPID_PLACEHOLDER if app id is not available
    */
   public String getAppId() {
-    String appId = Foundation.app().getAppId();
+    String appId = CommonSettings.getAppId();
     if (Strings.isNullOrEmpty(appId)) {
       appId = ConfigConsts.NO_APPID_PLACEHOLDER;
       logger.warn("app.id is not set, please make sure it is set in classpath:/META-INF/app.properties, now apollo " +
@@ -67,14 +68,14 @@ public class ConfigUtil {
    * @return the current data center, null if there is no such info.
    */
   public String getDataCenter() {
-    return Foundation.server().getDataCenter();
+    return CommonSettings.getDataCenter();
   }
 
   private void initCluster() {
     //Load data center from system property
     cluster = System.getProperty(ConfigConsts.APOLLO_CLUSTER_KEY);
 
-    String env = Foundation.server().getEnvType();
+    String env = CommonSettings.getEnvType();
     //LPT and DEV will be treated as a cluster(lower case)
     if (Strings.isNullOrEmpty(cluster) &&
         (Env.DEV.name().equalsIgnoreCase(env) || Env.LPT.name().equalsIgnoreCase(env))
@@ -119,7 +120,7 @@ public class ConfigUtil {
    * @throws ApolloConfigException if env is set
    */
   public Env getApolloEnv() {
-    Env env = EnvUtils.transformEnv(Foundation.server().getEnvType());
+    Env env = EnvUtils.transformEnv(CommonSettings.getEnvType());
     if (env == null) {
       String path = isOSWindows() ? "C:\\opt\\settings\\server.properties" :
           "/opt/settings/server.properties";
@@ -131,7 +132,7 @@ public class ConfigUtil {
   }
 
   public String getLocalIp() {
-    return Foundation.net().getHostAddress();
+    return CommonSettings.getHostAddress();
   }
 
   public String getMetaServerDomainName() {
@@ -224,7 +225,7 @@ public class ConfigUtil {
   }
 
   public String getDefaultLocalCacheDir() {
-    String cacheRoot = isOSWindows() ? "C:\\opt\\data\\%s" : "/opt/data/%s";
+    String cacheRoot = isOSWindows() ? "C:\\opt\\data\\%s" : "/home/work/data/apollo-local-cache/%s";
     return String.format(cacheRoot, getAppId());
   }
 

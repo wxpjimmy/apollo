@@ -1,5 +1,6 @@
 package com.ctrip.framework.apollo.common.customize;
 
+import com.ctrip.framework.apollo.core.utils.CommonSettings;
 import com.google.common.base.Strings;
 
 import com.ctrip.framework.apollo.tracer.Tracer;
@@ -41,7 +42,7 @@ public abstract class LoggingCustomizer implements InitializingBean {
   }
 
   private void tryConfigCLogging() throws Exception {
-    String appId = Foundation.app().getAppId();
+    String appId = CommonSettings.getAppId();
     if (Strings.isNullOrEmpty(appId)) {
       logger.warn("App id is null or empty!");
       return;

@@ -2,6 +2,7 @@ package com.ctrip.framework.apollo.common.datasource;
 
 import com.ctrip.framework.apollo.core.enums.Env;
 import com.ctrip.framework.apollo.core.enums.EnvUtils;
+import com.ctrip.framework.apollo.core.utils.CommonSettings;
 import com.ctrip.framework.foundation.Foundation;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +30,7 @@ public class TitanSettings {
   private String proTitanDbname;
 
   public String getTitanUrl() {
-    Env env = EnvUtils.transformEnv(Foundation.server().getEnvType());
+    Env env = EnvUtils.transformEnv(CommonSettings.getEnvType());
     if (env == null) {
       return "";
     }
@@ -48,7 +49,7 @@ public class TitanSettings {
   }
 
   public String getTitanDbname() {
-    Env env = EnvUtils.transformEnv(Foundation.server().getEnvType());
+    Env env = EnvUtils.transformEnv(CommonSettings.getEnvType());
     if (env == null) {
       return "";
     }

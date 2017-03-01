@@ -44,7 +44,8 @@ public class STSController extends STSControllerBase {
             String result = stsRose(request, response, authToken, followup, clientSign, sign, tokenNeedEcrypt);
             logger.info("Sts result: {}", result);
             if(result.startsWith("r:")) {
-                response.sendRedirect();
+//                response.setStatus(302);
+//                response
             }
             return result;
         } catch (Throwable e) {

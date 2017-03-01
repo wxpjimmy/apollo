@@ -181,7 +181,7 @@ public class RemoteConfigRepository extends AbstractConfigRepository {
             assembleQueryConfigUrl(configService.getHomepageUrl(), appId, cluster, m_namespace,
                 dataCenter, m_configCache.get());
 
-        logger.debug("Loading config from {}", url);
+        logger.info("Loading config from {}", url);
         HttpRequest request = new HttpRequest(url);
 
         Transaction transaction = Tracer.newTransaction("Apollo.ConfigService", "queryConfig");

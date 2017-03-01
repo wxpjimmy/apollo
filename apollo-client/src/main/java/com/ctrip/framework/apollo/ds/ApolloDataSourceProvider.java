@@ -3,6 +3,7 @@ package com.ctrip.framework.apollo.ds;
 import com.ctrip.framework.apollo.ConfigFile;
 import com.ctrip.framework.apollo.ConfigService;
 import com.ctrip.framework.apollo.core.enums.ConfigFileFormat;
+import com.ctrip.framework.apollo.core.utils.CommonSettings;
 import com.ctrip.framework.foundation.Foundation;
 
 import org.codehaus.plexus.logging.LogEnabled;
@@ -43,8 +44,8 @@ public class ApolloDataSourceProvider implements DataSourceProvider, LogEnabled 
    public DataSourcesDef defineDatasources() {
       if (m_def == null) {
          ConfigFile file = ConfigService.getConfigFile("datasources", ConfigFileFormat.XML);
-         String appId = Foundation.app().getAppId();
-         String envType = Foundation.server().getEnvType();
+         String appId = CommonSettings.getAppId();
+         String envType = CommonSettings.getEnvType();
 
          if (file != null && file.hasContent()) {
             String content = file.getContent();
