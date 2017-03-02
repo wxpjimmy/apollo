@@ -26,4 +26,9 @@ public interface UserRoleRepository extends PagingAndSortingRepository<UserRole,
    */
   List<UserRole> findByUserIdInAndRoleId(Collection<String> userId, long roleId);
 
+  /**
+   * find all user
+   * @return
+   */
+  List<UserRole> findAll();
 }

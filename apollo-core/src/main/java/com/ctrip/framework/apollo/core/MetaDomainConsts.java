@@ -36,17 +36,6 @@ public class MetaDomainConsts {
         env.getProperty("lpt_meta", prop.getProperty("lpt.meta", DEFAULT_META_URL)));
     domains.put(Env.PRO,
         env.getProperty("pro_meta", prop.getProperty("pro.meta", DEFAULT_META_URL)));
-    domains.put(Env.STAGING,
-            env.getProperty("staging_meta", prop.getProperty("staging.meta", DEFAULT_META_URL)));
-    domains.put(Env.LUGU,
-            env.getProperty("lugu_meta", prop.getProperty("lugu.meta", DEFAULT_META_URL)));
-    domains.put(Env.C3,
-            env.getProperty("c3_meta", prop.getProperty("c3.meta", DEFAULT_META_URL)));
-    domains.put(Env.C4,
-            env.getProperty("c4_meta", prop.getProperty("c4.meta", DEFAULT_META_URL)));
-    domains.put(Env.AWS_SGP,
-            env.getProperty("aws_sgp_meta", prop.getProperty("aws_sgp.meta", DEFAULT_META_URL)));
-
   }
 
   public static String getDomain(Env env) {

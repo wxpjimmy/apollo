@@ -76,25 +76,17 @@ public class CommonSettings {
     }
 
     public static String getEnvType() {
-        EnvironmentType type = ZKFacade.getZKSettings().getEnvironmentType();
-        logger.info("Env: {}", type.name());
-        return type.name();
+        String env = System.getProperty("apollo_profile");
+        if(StringUtils.isBlank(env)) {
+            env = "pro";
+        }
+        logger.info("Env: {}", env);
+        return env;
     }
 
     public static String getDataCenter() {
         EnvironmentType type = ZKFacade.getZKSettings().getEnvironmentType();
-        if (type == EnvironmentType.STAGING) {
-            return "STAGING";
-        } else if (type == EnvironmentType.LUGU) {
-            return "LUGU";
-        } else if (type.name().startsWith("C3")) {
-            return "C3";
-        } else if (type.name().startsWith("AWS")) {
-            return "AWC";
-        } else {
-            logger.error("Found unsupported data center: {}", type.name());
-            return null;
-        }
+        return type.name().toUpperCase();
     }
 
     public static String getHostAddress() {
